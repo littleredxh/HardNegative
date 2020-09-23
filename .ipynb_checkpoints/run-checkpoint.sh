@@ -1,0 +1,1 @@
+python main.py --Data CUB --model R18 --dim 64 --lr 3e-3 --epochs 70 --i 0 --ngpu 2 --semi 0 --sct 0
