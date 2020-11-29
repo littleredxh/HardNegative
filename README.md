@@ -5,10 +5,12 @@ Arxiv link: https://arxiv.org/pdf/2007.12749.pdf
 
 ### Citation
 ```
-@article{xuan2020hard,
+@inproceedings{xuan2020hard,
   title={Hard negative examples are hard, but useful},
   author={Xuan, Hong and Stylianou, Abby and Liu, Xiaotong and Pless, Robert},
-  journal={arXiv preprint arXiv:2007.12749},
-  year={2020}
+  booktitle={European Conference on Computer Vision},
+  pages={126--142},
+  year={2020},
+  organization={Springer}
 }
 ```
