@@ -74,8 +74,13 @@ unzip "exp_Hotel/input/dataset.zip" for chain retrieval
 
 ## Updates:
 Feb 14, 2021: 
+
 Improve loss function computation stablility
+
 Improve the retrieval performance accross all datasets reported in the paper
+
 Upload the training log information for all results
+
 Add Hotel instance and chain retrieval code in "Hotel_instance_chain_retrieval.ipynb"
+
 Add Hotel instance retrieval code（use in training） in  "_code.Evaluation.py"
