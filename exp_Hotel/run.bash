@@ -6,9 +6,9 @@ NGPU=4
 REPEAT=5
 BSIZE=512
 LAM=1
-for METHOD in "shn"; do
-for LR in "1e-2" "3e-2" "1e-1" "3e-1"; do
-for IT in 1 2; do
+for METHOD in "sct"; do
+for LR in "1e-1"; do
+for IT in 0; do
 #
 echo "method: ${METHOD} lam: ${LAM}, lr: ${LR}, i: ${IT}"
 export MODEL DATA DIM LR EP IT BSIZE NGPU REPEAT BSIZE LAM METHOD
