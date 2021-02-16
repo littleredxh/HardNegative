@@ -6,13 +6,13 @@ Arxiv link: https://arxiv.org/pdf/2007.12749.pdf
 We provide the experiment result for each dataset(DATA) in folder exp_{DATA}.
 
 DATA = CUB or CAR
-The _result folder contains tensorboard results with Keys: '{DATA}_test_R_1', '{DATA}_test_R_2', '{DATA}_test_R_4', '{DATA}_test_R_8', '{DATA}_train_R_1', 'hn_ratio', 'loss'.
+The _result folder contains tensorboard results with Keys: `{DATA}_test_R_1`, `{DATA}_test_R_2`, `{DATA}_test_R_4`, `{DATA}_test_R_8`, `{DATA}_train_R_1`, `hn_ratio`, `loss`.
 
 DATA = SOP
-The _result folder contains tensorboard results with Keys: 'SOP_test_R_1', 'SOP_test_R_1', 'SOP_test_R_100', 'SOP_test_R_1000', 'SOP_train_R_1', 'hn_ratio', 'loss'.
+The _result folder contains tensorboard results with Keys: `SOP_test_R_1`, `SOP_test_R_1`, `SOP_test_R_100`, `SOP_test_R_1000`, `SOP_train_R_1`, `hn_ratio`, `loss`.
 
 DATA = ICR(Inshop)
-The _result folder contains tensorboard results with Keys: 'ICR_test_R_1', 'ICR_test_R_1', 'ICR_test_R_100', 'ICR_test_R_1000', 'hn_ratio', 'loss'.
+The _result folder contains tensorboard results with Keys: `ICR_test_R_1`, `ICR_test_R_1`, `ICR_test_R_100`, `ICR_test_R_1000`, `hn_ratio`, `loss`.
 
 
 ## Result Table
@@ -34,7 +34,7 @@ CAR(ResNet50, embedding size 64)
    
 SOP(ResNet50, embedding size 512)
 
-| Method |          R@1 |         R@10 |         R@20 |         R@40 |
+| Method |          R@1 |         R@10 |        R@100 |       R@1000 |
 |--------|--------------|--------------|--------------|--------------|
 |     hn | not measured | not measured | not measured | not measured |
 |    shn | 81.06\pm0.06 | 92.32\pm0.07 | 96.84\pm0.05 | 98.90\pm0.01 |
