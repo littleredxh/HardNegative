@@ -1,17 +1,18 @@
 import torch
 from torch.utils.data.sampler import SequentialSampler
 import torch.nn.functional as F
+from .Model import setModelMode
 
-def feature(dsets, model):
+def feature(dsets, model, multi_gpu=False):
     Fvecs = []
-    dataLoader = torch.utils.data.DataLoader(dsets, batch_size=400, sampler=SequentialSampler(dsets), num_workers=48)
-    torch.set_grad_enabled(False)
-    model.eval()
-    for data in dataLoader:
-        inputs_bt, labels_bt = data # <FloatTensor> <LongTensor>
-        fvec = model(inputs_bt.cuda())
-        fvec = F.normalize(fvec, p = 2, dim = 1).cpu()
-        Fvecs.append(fvec)
+    dataLoader = torch.utils.data.DataLoader(dsets, batch_size=400, sampler=SequentialSampler(dsets), num_workers=32)
+    with torch.set_grad_enabled(False):
+        setModelMode(model, 'eva', multi_gpu)
+        for data in dataLoader:
+            inputs_bt, labels_bt = data # <FloatTensor> <LongTensor>
+            fvec = model(inputs_bt.cuda())
+            fvec = F.normalize(fvec, p = 2, dim = 1).cpu()
+            Fvecs.append(fvec)
             
     return torch.cat(Fvecs,0)
 

@@ -17,10 +17,9 @@ def is_image_file(filename):
     return any(filename.endswith(extension) for extension in IMG_EXTENSIONS)
 
 def find_classes(data_dict):
-    classes = [c for c in sorted(data_dict) if c[0]!='_']
-    classes.sort()
-    class_to_idx = {classes[i]: i for i in range(len(classes))}
-    return classes, class_to_idx
+    className = sorted([c for c in data_dict.keys() if c[0]!='_'])
+    className_to_classId = {className[i]: i for i in range(len(className))}
+    return className, className_to_classId
 
 def make_dataset(data_dict, class_to_idx):
     images = []
@@ -75,15 +74,15 @@ class ImageReader(data.Dataset):
     def __init__(self, data_dict, transform=None, target_transform=None,
                  loader=default_loader):
         
-        classes, class_to_idx = find_classes(data_dict)
-        imgs, intervals, idx_to_class = make_dataset(data_dict, class_to_idx)
+        className, className_to_classId = find_classes(data_dict)
+        imgs, intervals, idx_to_class = make_dataset(data_dict, className_to_classId)
         
         if len(imgs) == 0:
             raise(RuntimeError("Found 0 images!"))
 
         self.imgs = imgs
-        self.classes = classes
-        self.class_to_idx = class_to_idx# class name -> 0,1,2,3,4
+        self.className = className
+        self.className_to_classId = className_to_classId# class name -> 0,1,2,3,4
         self.intervals = intervals
         self.idx_to_class = idx_to_class# img_idx->class
         self.transform = transform

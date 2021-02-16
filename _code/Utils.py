@@ -66,7 +66,7 @@ def recall(Fvec, imgLab, rank=None):
                 imgPre = imgLab[idx[:,i]]
                 A += (imgPre==imgLab).float()
             acc_list.append((torch.sum((A>0).float())/N).item())
-        return torch.Tensor(acc_list)
+        return acc_list
     
 def recall2(Fvec_val, Fvec_gal, imgLab_val, imgLab_gal, rank=None):
     N = len(imgLab_val)
@@ -101,7 +101,7 @@ def genInterval(Len, gap):
     
     return interval
 
-def recall2_batch(Fvec_val, Fvec_gal, imgLab_val, imgLab_gal, gap=100):
+def recall2_batch(Fvec_val, Fvec_gal, imgLab_val, imgLab_gal, topk=100, gap=100):
     N = len(imgLab_val)
     imgLab_val = torch.LongTensor([imgLab_val[i] for i in range(len(imgLab_val))])
     imgLab_gal = torch.LongTensor([imgLab_gal[i] for i in range(len(imgLab_gal))])
@@ -110,7 +110,7 @@ def recall2_batch(Fvec_val, Fvec_gal, imgLab_val, imgLab_gal, gap=100):
     idx=[]
     for itv in interval_out:
         D = (Fvec_val[itv[0]:itv[1],:].cuda()).mm(torch.t(Fvec_gal).cuda())
-        idx.append(D.sort(1,descending=True)[1][:,:100].cpu())
+        idx.append(D.sort(1,descending=True)[1][:,:topk].cpu())
         print('{:.2f}'.format(itv[0]/N*100),end='\r')
     idx = torch.cat(idx,0)
     print(idx.size())

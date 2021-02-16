@@ -4,7 +4,7 @@ import random
 import torch
 
 class BalanceSampler_filled(Sampler):
-    def __init__(self, intervals, GSize=2, repeat=20):
+    def __init__(self, intervals, GSize=2, repeat=1):
         
         class_len = len(intervals)
         list_sp = []
@@ -21,7 +21,7 @@ class BalanceSampler_filled(Sampler):
             else:
                 len_max = len_max-len_max%GSize+GSize
             
-        while repeat>0:
+        for _ in range(repeat):
             # filled images for each class
             for l in interval_list:
                 if l.shape[0]<len_max:
@@ -37,17 +37,9 @@ class BalanceSampler_filled(Sampler):
                 list_sp.append(l_ext)
 
             random.shuffle(list_sp)
-            index_bank = np.vstack(list_sp).reshape((GSize*class_len,-1)).T
-            
-            if index_bank.shape[0]>=repeat:
-                self.idx += index_bank[:repeat,:].reshape((1,-1)).flatten().tolist()
-                break
-            else:
-                self.idx += index_bank.reshape((1,-1)).flatten().tolist()
-                repeat -= index_bank.shape[0]
-                
-            
+            self.idx += np.vstack(list_sp).reshape((GSize*class_len,-1)).T.reshape((1,-1)).flatten().tolist()
         print('total images size in sampler: {}'.format(len(self.idx)))
+        
         
     def __iter__(self):
         return iter(self.idx)
@@ -79,4 +71,3 @@ class BalanceSampler_sample(Sampler):
     
     def __len__(self):
         return len(self.idx)
-    
