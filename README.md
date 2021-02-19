@@ -48,14 +48,22 @@ Inshop(ResNet50, embedding size 512)
 |    shn | 90.55\pm0.15 | 97.37\pm0.07 | 98.09\pm0.10 | 98.45\pm0.08 |
 |    sct | 90.93\pm0.22 | 97.51\pm0.05 | 98.16\pm0.03 | 98.44\pm0.03 |
 
-Hotel50K(ResNet50, embedding size 256)
+Hotel50K-instance(ResNet50, embedding size 256)
 
-| Method |          R@1 |
-|--------|--------------|
-|     hn |     collapse |
-|    shn | 18.78\pm0.08 |
-|    sct | 29.24\pm0.12 |
-   
+| Method |          R@1 |         R@10 |        R@100 |
+|--------|--------------|--------------|--------------|
+|     hn |     collapse |     collapse |     collapse |
+|    shn | 18.78\pm0.08 | 32.90\pm0.26 | 52.19\pm0.19 |
+|    sct | 29.24\pm0.12 | 44.38\pm0.11 | 61.53\pm0.08 |
+
+Hotel50K-chain(ResNet50, embedding size 256)
+
+| Method |          R@1 |          R@3 |          R@5 |
+|--------|--------------|--------------|--------------|
+|     hn |     collapse |     collapse |     collapse |
+|    shn | 54.17\pm0.05 | 64.99\pm0.16 | 69.90\pm0.21 |
+|    sct | 60.78\pm0.13 | 70.39\pm0.45 | 74.35\pm0.22 |
+
    
 ### HOTEL50K
 unzip "exp_Hotel/input/dataset.zip" for chain retrieval
