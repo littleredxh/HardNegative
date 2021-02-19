@@ -128,7 +128,7 @@ for epoch in range(Epochs+1):
                 loss.backward()
                 optimizer.step() 
                 
-            writer.add_scalar('hn_ration', hn_ratio, global_it)
+            writer.add_scalar('hn_ratio', hn_ratio, global_it)
             global_it+=1
 
             L_data += loss.item()
